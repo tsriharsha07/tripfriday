@@ -7,7 +7,6 @@ import UserImages from './UserImages';
 const UserAlbums = ({ userId }) => {
     const [albums, setAlbums] = useState([]);
     const [expanded, setExpanded] = useState(false);
-    const [showImage, setShowImage] = useState(false)
     const getAlbums = async () => {
         const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}/albums`);
         setAlbums(data)
@@ -20,7 +19,6 @@ const UserAlbums = ({ userId }) => {
         setExpanded((prevState) => !prevState);
     };
 
-    console.log(showImage);
     return (
         <div className='flex items-center justify-center flex-col w-[80vw] shadow-xl rounded-xl mt-10 pt-10 mx-12'>
             <div className='flex items-baseline justify-around w-[80vw]'>

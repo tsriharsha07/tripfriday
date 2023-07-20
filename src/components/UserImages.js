@@ -18,7 +18,6 @@ const UserImages = () => {
         <div className='grid grid-cols-8 gap-4 mt-4'>
             {
                 photos.map(photo =>(
-                    
                     <div className='flex flex-col'>
                         <img src={photo.url} alt='Thumbnail' />
                     </div>

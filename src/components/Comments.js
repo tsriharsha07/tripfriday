@@ -20,13 +20,11 @@ const Comments = ({ post,getPosts }) => {
     
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        
         const {data} = await axios.post(`https://my-json-server.typicode.com/tsriharsha07/tripfriday/comments`,{
             postId: post.id,
             body:comment
         });
         console.log(data);
-
     }
     return (
         <div className='border-2 p-3 border-black rounded-lg'>

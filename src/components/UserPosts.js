@@ -11,8 +11,7 @@ const UserPosts = ({ userId }) => {
     const getPosts = async () => {
         const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
         setPosts(data);
-        setFilteredData(data)
-        
+        setFilteredData(data)   
     }
 
     useEffect(() => {
@@ -32,9 +31,9 @@ const UserPosts = ({ userId }) => {
             setFilteredData(results);
           } else {
             setFilteredData(posts);
-          }
-        
+          } 
     }
+    
     return (
         <div className='flex items-center justify-center flex-col w-[80vw] shadow-xl rounded-xl mt-10 pt-10 mx-12'>
             <div className='flex items-baseline justify-around w-[80vw]'>

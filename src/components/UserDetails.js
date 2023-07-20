@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import UserPosts from './UserPosts';
 import UserAlbums from './UserAlbums';
+import axios from 'axios';
 
 const UserDetails = () => {
     const { id } = useParams();
-    const [user, setUser] = useState(null);
-
+    const [user, setUser] = useState();
+    const getUserDetails = async()=>{
+        const {data}=await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+        console.log(data);
+        setUser(data);
+    }
+    console.log(user);
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-            .then((response) => response.json())
-            .then((data) => setUser(data))
-            .catch((error) => console.log(error));
-    }, [id]);
- 
+       getUserDetails();
+    }, []);
     return (
         <div className='flex items-center justify-center pt-10 flex-col'>
             <h1 className='text-5xl'>User Details</h1>
