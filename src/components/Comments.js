@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const Comments = ({ post,getPosts }) => {
     const [comments, setComments] = useState([]);
+    const [comment,setComment]=useState();
     const getComments = async () => {
         const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`);
 
@@ -17,7 +18,16 @@ const Comments = ({ post,getPosts }) => {
         getPosts();
     }
     
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        
+        const {data} = await axios.post(`https://my-json-server.typicode.com/tsriharsha07/tripfriday/comments`,{
+            postId: post.id,
+            body:comment
+        });
+        console.log(data);
 
+    }
     return (
         <div className='border-2 p-3 border-black rounded-lg'>
             <h1 className='text-3xl text-center mb-4'>Post</h1>
@@ -46,8 +56,8 @@ const Comments = ({ post,getPosts }) => {
                     )}
             </div>
             <div className='flex flex-row justify-evenly'>
-                <form className='mx-4'>
-                    <input type="text" name='comment' placeholder='Add Comments' className='mx-4 p-2 border-2 rounded-lg border-black' />
+                <form className='mx-4' onSubmit={handleSubmit}>
+                    <input type="text" name='comment' placeholder='Add Comments' className='mx-4 p-2 border-2 rounded-lg border-black' value={comment} onChange={(e)=>setComment(e.target.value)}/>
                     <button type='submit'>Submit</button>
                 </form>
                 <button onClick={deletePost}>Delete Post</button>
